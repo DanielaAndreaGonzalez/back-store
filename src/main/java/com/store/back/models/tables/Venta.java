@@ -1,4 +1,4 @@
-package com.store.back.models.tablas;
+package com.store.back.models.tables;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

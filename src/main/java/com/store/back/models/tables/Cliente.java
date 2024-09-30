@@ -1,5 +1,4 @@
-package com.store.back.models.tablas;
-
+package com.store.back.models.tables;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,15 +9,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "empleados")
-public class Empleado {
+@Table(name = "clientes")
+public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nombre;
     private String apellido;
-    private String cargo;
     private String email;
     private String telefono;
 }
