@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.store.back.models.Product;
-import com.store.back.models.ProductDto;
+import com.store.back.models.tables.Product;
+import com.store.back.models.DTO.ProductDto;
 import com.store.back.repositories.ProductRepository;
 
 import jakarta.persistence.EntityNotFoundException;
