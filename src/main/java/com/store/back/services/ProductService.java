@@ -2,6 +2,7 @@ package com.store.back.services;
 
 import java.util.List;
 import com.store.back.models.ProductDto;
+import com.store.back.models.SaleItemDto;
 
 public interface ProductService {
     List<ProductDto> getAll();
@@ -13,4 +14,6 @@ public interface ProductService {
     ProductDto update(Integer id, ProductDto productDto);
 
     void delete(Integer id);
+
+    void decreaseStock(List<SaleItemDto> salesImtemDtos);
 }

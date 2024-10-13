@@ -1,16 +1,15 @@
 package com.store.back.services;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.store.back.models.Product;
 import com.store.back.models.ProductDto;
+import com.store.back.models.SaleItemDto;
 import com.store.back.repositories.ProductRepository;
+import com.store.back.services.Utilities.ProductConverter;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -22,17 +21,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDto> getAll() {
-        return getProductDtosFromProduct(productRepository.findAll());
+        return ProductConverter.entitiesToDtos(productRepository.findAll());
     }
 
     @Override
     public ProductDto getById(Integer id) {
-        return getProductDtoFromProduct(productRepository.findById(id).orElse(null));
+        return ProductConverter.entityToDto(productRepository.findById(id).orElse(null));
     }
 
     @Override
     public ProductDto create(ProductDto productDto) {
-        return getProductDtoFromProduct(productRepository.save(getProductFromProductDto(productDto)));
+        return ProductConverter.entityToDto(
+                productRepository.save(ProductConverter.dtoToEntity(productDto)));
     }
 
     @Override
@@ -55,24 +55,19 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteById(id);
     }
 
-    private List<ProductDto> getProductDtosFromProduct(List<Product> products) {
-        return Optional.ofNullable(products)
-                .stream()
-                .flatMap(Collection::stream)
-                .map(this::getProductDtoFromProduct)
-                .collect(Collectors.toList());
-    }
+    public void decreaseStock(List<SaleItemDto> salesDetailsDto) {
+        salesDetailsDto.forEach(dto -> {
+            Product product = productRepository.findById(dto.product().id())
+                    .orElseThrow(
+                            () -> new EntityNotFoundException("Product not found with id: " + dto.product().id()));
 
-    private ProductDto getProductDtoFromProduct(Product product) {
-        return Optional.ofNullable(product)
-                .map(prod -> new ProductDto(prod.getId(), prod.getPrice(), prod.getName(), prod.getStock()))
-                .orElseThrow(() -> new IllegalArgumentException("Product cannot be null"));
-    }
+            if (product.getStock() < dto.quantity()) {
+                throw new IllegalArgumentException("Insufficient stock for product " + product.getName());
+            }
 
-    private Product getProductFromProductDto(ProductDto productDto) {
-        return Optional.ofNullable(productDto)
-                .map(prodDto -> new Product(prodDto.id(), prodDto.price(), prodDto.name(), prodDto.stock()))
-                .orElseThrow(() -> new IllegalArgumentException("ProductDto cannot be null"));
+            product.setStock(product.getStock() - dto.quantity());
+            productRepository.save(product);
+        });
     }
 
 }
