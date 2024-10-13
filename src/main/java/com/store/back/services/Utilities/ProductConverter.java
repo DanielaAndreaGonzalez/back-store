@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.store.back.models.Product;
-import com.store.back.models.ProductDto;
+import com.store.back.models.tables.Product;
+import com.store.back.models.DTO.ProductDto;
 
 public class ProductConverter {
 

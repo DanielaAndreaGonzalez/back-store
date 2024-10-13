@@ -1,4 +1,4 @@
-package com.store.back.models;
+package com.store.back.models.tables;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

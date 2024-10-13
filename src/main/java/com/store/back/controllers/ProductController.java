@@ -2,7 +2,7 @@ package com.store.back.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.store.back.models.ProductDto;
+import com.store.back.models.DTO.ProductDto;
 import com.store.back.services.ProductService;
 
 import java.util.List;

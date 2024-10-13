@@ -1,4 +1,4 @@
-package com.store.back.models;
+package com.store.back.models.tables;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

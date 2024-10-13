@@ -2,8 +2,8 @@ package com.store.back.services.Utilities;
 
 import java.util.List;
 
-import com.store.back.models.SaleItem;
-import com.store.back.models.SaleItemDto;
+import com.store.back.models.DTO.SaleItemDto;
+import com.store.back.models.tables.SaleItem;
 import com.store.back.repositories.ProductRepository;
 
 public class SaleItemConverter {

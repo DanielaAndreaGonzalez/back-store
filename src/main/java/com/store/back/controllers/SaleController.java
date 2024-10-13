@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.store.back.models.SaleDto;
+import com.store.back.models.DTO.SaleDto;
 import com.store.back.services.SaleService;
 
 @RestController

@@ -1,8 +1,8 @@
 package com.store.back.services;
 
 import java.util.List;
-import com.store.back.models.ProductDto;
-import com.store.back.models.SaleItemDto;
+import com.store.back.models.DTO.ProductDto;
+import com.store.back.models.DTO.SaleItemDto;
 
 public interface ProductService {
     List<ProductDto> getAll();

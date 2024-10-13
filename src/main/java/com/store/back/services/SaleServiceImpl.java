@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.store.back.models.Sale;
-import com.store.back.models.SaleDto;
-import com.store.back.models.SaleItem;
+
+import com.store.back.models.DTO.SaleDto;
+import com.store.back.models.tables.Sale;
+import com.store.back.models.tables.SaleItem;
 import com.store.back.repositories.ProductRepository;
 import com.store.back.repositories.SaleItemRepository;
 import com.store.back.repositories.SaleRepository;

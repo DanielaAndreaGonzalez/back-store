@@ -2,7 +2,7 @@ package com.store.back.services;
 
 import java.util.List;
 
-import com.store.back.models.SaleDto;
+import com.store.back.models.DTO.SaleDto;
 
 public interface SaleService {
     SaleDto createSale(SaleDto saleDto);
