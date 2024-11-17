@@ -1,5 +1,6 @@
 package com.store.back.services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,4 +72,26 @@ public class SaleServiceImpl implements SaleService {
         List<Sale> sales = saleRepository.findAll();
         return SaleConverter.entitysToDtos(sales);
     }
+
+    @Override
+    public Long countBySaleDate(LocalDate date) {
+        try {
+            return saleRepository.countBySaleDate(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0L;
+        }
+
+    }
+
+    @Override
+    public Double totalBySaleDate(LocalDate fecha) {
+        try {
+            return saleRepository.sumTotalBySaleDate(fecha);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0.0;
+        }
+    }
+
 }

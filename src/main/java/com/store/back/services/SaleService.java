@@ -1,5 +1,6 @@
 package com.store.back.services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.store.back.models.DTO.SaleDto;
@@ -14,4 +15,8 @@ public interface SaleService {
     void deleteSale(Integer id);
 
     List<SaleDto> getAllSales();
+
+    Long countBySaleDate(LocalDate fecha);
+
+    Double totalBySaleDate(LocalDate fecha);
 }

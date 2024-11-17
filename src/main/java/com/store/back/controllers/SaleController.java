@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.store.back.models.DTO.SaleDto;
 import com.store.back.services.SaleService;
 
+import java.time.LocalDate;
+
 @RestController
 @RequestMapping("/api/sales")
 @CrossOrigin(origins = "*")
@@ -36,5 +38,15 @@ public class SaleController {
     @DeleteMapping("/delete/{id}")
     public void deleteSale(@PathVariable Integer id) {
         saleService.deleteSale(id);
+    }
+
+    @GetMapping("/count")
+    public Long countSalesByDate() {
+        return saleService.countBySaleDate(LocalDate.now());
+    }
+
+    @GetMapping("/total")
+    public Double getTotalSales() {
+        return saleService.totalBySaleDate(LocalDate.now());
     }
 }

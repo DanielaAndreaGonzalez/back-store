@@ -3,6 +3,7 @@ package com.store.back.controllers;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.store.back.models.DTO.ProductDto;
+import com.store.back.models.DTO.ProductTopSelling;
 import com.store.back.services.ProductService;
 
 import java.util.List;
@@ -43,6 +44,21 @@ public class ProductController {
     @DeleteMapping("delete/{id}")
     public void delete(@PathVariable Integer id) {
         productService.delete(id);
+    }
+
+    @GetMapping("/low-inventory")
+    public List<ProductDto> lowInventory() {
+        try {
+            return productService.lowInventoryProduct();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @GetMapping("/top-selling/{month}/{year}")
+    public ProductTopSelling getProductTopSelling(@PathVariable Integer month, @PathVariable Integer year) {
+        return productService.getProductoMasVendidoDelMes(month, year);
     }
 
 }

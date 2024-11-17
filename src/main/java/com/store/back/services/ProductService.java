@@ -2,6 +2,7 @@ package com.store.back.services;
 
 import java.util.List;
 import com.store.back.models.DTO.ProductDto;
+import com.store.back.models.DTO.ProductTopSelling;
 import com.store.back.models.DTO.SaleItemDto;
 
 public interface ProductService {
@@ -16,4 +17,8 @@ public interface ProductService {
     void delete(Integer id);
 
     void decreaseStock(List<SaleItemDto> salesImtemDtos);
+
+    List<ProductDto> lowInventoryProduct();
+
+    ProductTopSelling getProductoMasVendidoDelMes(int month, int year);
 }
